@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "bddweb";  // 改成你的数据库名
 $username = "root";
-$password = "";
+$password = "root";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
