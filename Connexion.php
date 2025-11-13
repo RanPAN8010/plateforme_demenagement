@@ -1,6 +1,8 @@
 <?php
 session_start();                      
 require_once 'connexion.inc.php';    
+include 'head.php';
+include 'footer.php';
 
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -85,3 +87,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } // end POST
 function e($s) { return htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8'); }
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+</head>
+<body>
+    <section class="page-header bg-light py-4">
+        <div class="container text-center">
+            <h1 class="h3">Connexion</h1>
+        </div>
+    </section>
+<body>
+<html>
