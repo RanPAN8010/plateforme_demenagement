@@ -1,8 +1,516 @@
+/* ======== 页面基础样式 ======== */
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #F7EBDD; /* 米色背景 */
+    margin: 0; /* 移除页面默认边距 */
+}
+
+h1 {
+    color: #4A6AA0; /* 蓝色标题 */
+    text-align: center; /* 标题居中 */
+}
+
+p {
+    text-align: center; /* 段落居中 */
+}
+
+
+/* ======== 导航栏的新样式 ======== */
+
+/* 导航栏容器 */
+.navbar {
+    display: flex; 
+    /* 改回 center，这是让 Logo 和 按钮 在垂直方向上“重心”对齐的最佳方式 */
+    align-items: center;  
+    
+    background-color: rgba(255, 255, 255, 0); 
+    backdrop-filter: blur(5px); 
+    padding: 10px 30px; /* 建议减小这里的上下 padding，比如 10px，让高度更多由内容决定 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
+
+    /* 1. 将导航栏从文档流中“提”出来，使其可以浮动 */
+    position: absolute;
+    
+    /* 2. 将其固定在屏幕顶部 */
+    top: 0;
+    
+    /* 3. 将其固定在屏幕左侧 */
+    left: 0;
+    
+    /* 4. 强制其宽度为 100% (因为它已脱离文档流) */
+    width: 100%;
+    
+    /* 5. 确保它在所有其他内容 (如图片) 之上 */
+    z-index: 100;
+    
+    /* 6. (非常重要) 防止 padding 撑破 100% 宽度 */
+    box-sizing: border-box;
+}
+
+.navbar nav {
+    flex-grow: 1; 
+
+    margin-top: 5px; /* 如果你觉得导航栏太高，可以微调这里 */
+}
+
+.logo-img {
+    max-height: 100px; /* 你的大图片 */
+    width: auto;    
+    display: block;  
+    padding: 0; /* 建议：移除图片自身的 padding，这样更容易控制尺寸 */
+    border-radius: 15px; 
+}
+
+.nav-links {
+    list-style: none;   
+    display: flex;  
+    margin: 0;
+    padding: 0;
+    justify-content: space-evenly; 
+}
+
+.nav-links a {
+    background-color: rgba(80, 80, 80, 0.6);
+    color: rgb(254, 254, 254); 
+    padding: 20px 20px; /* 稍微减小按钮的 padding，让它比 Logo 矮一点 */
+    border-radius: 20px; 
+    text-decoration: none; 
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    
+    /* 关键技巧：如果你觉得按钮太靠下或太靠上，可以在这里微调 */
+    /* vertical-align: middle; */
+}
+
+/* 鼠标悬停 (Hover) 效果 */
+.nav-links a:hover {
+    background-color: rgba(30, 30, 30, 0.8); /* 悬停时变深 */
+    color: white; /* 悬停时文字变白 */
+}
+
+
+/* ======== 首页新样式 ======== */
+
+/* --- 区块 1: 英雄/背景图 --- */
+.hero-section {
+    height: 100vh; /* 占屏幕高度的 80% */
+    /* * 重要：
+     * 1. 在你的项目根目录创建一个 `img` 文件夹。
+     * 2. 把 `image_cca49d.jpg` 放入 `img` 文件夹。
+     * 3. CSS 在 `css` 文件夹中, 所以它需要用 `../` 返回上一级
+     */
+    background-image: url('../img/bj.png');
+    background-size: cover; /* 覆盖整个区域 */
+    background-position: center; /* 图像居中 */
+    
+    /* 使用 Flex 居中 Slogan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* 用于导航栏的半透明效果 */
+}
+
+.slogan-container {
+    background-color: #E28C3F; /* 橙色 (来自你的 Logo) */
+    padding: 20px 60px;
+    border-radius: 40px; /* 圆角 */
+    color: black;
+    font-weight: bold;
     text-align: center;
 }
-h1 {
-    color: #2b6cb0;
+
+/* --- 通用区块标题 (橙色方块) --- */
+.section-title {
+    display: inline-block; /* 允许设置 margin 和 padding */
+    background-color: #E28C3F;
+    color: black;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+/* --- 通用头像占位符 (绿色圆圈) --- */
+.avatar-placeholder {
+    border-radius: 50%; /* 完美圆形 */
+    background-color: #a4d47c; /* 浅绿色 */
+    margin: 0 auto; /* 居中 */
+}
+.user-avatar {
+    width: 100px;
+    height: 100px;
+}
+.mover-avatar {
+    width: 120px;
+    height: 120px;
+}
+
+/* --- 通用轮播 (Carousel) 布局 --- */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+.carousel-track-container {
+    /*overflow: hidden; /* 关键：隐藏轨道上溢出的部分 */
+    width: 100%;
+}
+.carousel-track {
+    display: flex;
+    
+    transition: transform 0.5s ease; 
+    
+}
+.arrow {
+    background-color: #a4d47c; /* 浅绿色箭头 */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 10;
+}
+.arrow.dark-arrow {
+    background-color: #333; /* 黑色箭头 */
+}
+.arrow.arrow-left {
+    margin-right: 15px; /* 稍微重叠在容器上 */
+}
+.arrow.arrow-right {
+    margin-left: 15px; /* 稍微重叠在容器上 */
+}
+
+
+/* --- 区块 2: 用户口碑 --- */
+.testimonials-section {
+    text-align: center; /* 居中标题 */
+    padding-bottom: 40px;
+    overflow: hidden;
+}
+.testimonial-card {
+    flex-basis: 300px;
+    flex-shrink: 0;
+
+    background-color: #f0f0f0; /* 先给个背景色 */
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+
+    margin: 0 10px; /* 卡片间距 */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+/* 卡片内的绿色元素 */
+.testimonial-card h3 {
+    background-color: #a4d47c;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+    font-size: 1em;
+    margin-top: 15px;
+}
+.review-box {
+    background-color: #a4d47c;
+    border-radius: 20px;
+    padding: 15px;
+    margin-top: 10px;
+}
+/* 模拟设计图中的“淡出”效果 */
+.testimonial-card.faded {
+    opacity: 0.4;
+    transform: scale(0.9);
+}
+
+
+/* --- 区块 3: 优秀搬家工 --- */
+.movers-section {
+    text-align: center;
+    padding-bottom: 40px;
+    background-color: #f9f9f9; /* 给个浅色背景以区分 */
+}
+.movers-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* 允许换行 */
+    gap: 25px; /* 卡片间距 */
+    width: 90%;
+    margin: 0 auto;
+}
+.mover-card {
+    width: 200px;
+    text-align: center;
+}
+.mover-card h3 {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+.mover-info-box {
+    background-color: #a4d47c;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 0.9em;
+}
+
+/* --- 区块 4: 滚动广告列表 --- */
+.ads-carousel-section {
+    text-align: center;
+    padding-bottom: 50px;
+}
+.ad-carousel-card {
+    display: flex;
+    background-color: #E28C3F; /* 橙色 */
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%; /* 轨道容器会控制它 */
+    box-sizing: border-box; /* 确保 padding 不会撑破 */
+    flex-shrink: 0;
+}
+.ad-card-image {
+    flex-basis: 25%;
+    min-height: 150px;
+    background-color: #a4d47c; /* 绿色图片占位符 */
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.ad-card-info {
+    flex-basis: 75%;
+    text-align: left;
+    padding-left: 25px;
+    color: black;
+}
+.ad-card-info h4 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+.ad-card-info p {
+    margin: 5px 0;
+}
+
+
+
+
+
+/* ======== 广告列表页新样式 ======== */
+
+/* 页面主要内容的居中容器 */
+.content-wrapper {
+    width: 90%; /* 内容区域占页面宽度的 90% */
+    max-width: 1200px; /* 但最大不超过 1200px */
+    margin: 30px auto; /* 顶部空隙 30px，左右自动居中 */
+}
+
+/* ---- 筛选栏 ---- */
+.filter-section {
+    display: flex; /* 使用 Flex 布局，让筛选框横向排列 */
+    justify-content: center; /* 居中所有筛选框 */
+    flex-wrap: wrap; /* 如果屏幕太窄，允许换行 */
+    gap: 20px; /* 筛选框之间的间距 */
+    margin-bottom: 30px; /* 筛选栏和分隔线之间的间距 */
+}
+
+.filter-input {
+    padding: 12px 25px; /* 内部填充 */
+    border: none; /* 移除默认边框 */
+    border-radius: 25px; /* 胶囊形状 (圆角) */
+    background-color: #d9f0c1; /* 图片中的浅绿色 */
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    outline: none; /* 移除点击时的蓝色轮廓 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 轻微阴影 */
+    min-width: 180px; /* 保证一个最小宽度 */
+}
+
+/* 样式化 placeholder 文本 */
+.filter-input::placeholder {
+    color: #555;
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+/* 隐藏 date 类型输入框的默认 "mm/dd/yyyy" 文字 */
+.filter-input[type="date"] {
+    color: #333; /* 确保选中的日期是可见的 */
+}
+
+
+/* ---- 分隔线 ---- */
+.separator {
+    border: none;
+    height: 4px; /* 线的粗细 */
+    background-color: #d1d1d1; /* 线的颜色 */
+    border-radius: 2px; /* 线的圆角 */
+    margin: 40px 0; /* 上下外边距 */
+}
+
+/* ---- 广告列表 ---- */
+.ad-list-container {
+    display: flex;
+    flex-direction: column; /* 列表项垂直堆叠 */
+    gap: 20px; /* 列表项之间的间距 */
+}
+
+.ad-item {
+    display: flex; /* 使用 Flex 布局 (头像在左, 信息在右) */
+    align-items: center; /* 垂直居中 */
+    background-color: #888888; /* 图片中的灰色背景 */
+    border-radius: 25px; /* 圆角 */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 阴影 */
+}
+
+/* 广告头像 (绿色圆圈) */
+.ad-avatar {
+    width: 70px;
+    height: 70px;
+    background-color: #a4d47c; /* 图片中的浅绿色 */
+    border-radius: 50%; /* 完美圆形 */
+    margin-right: 25px; /* 和信息文字的间距 */
+    flex-shrink: 0; /* 防止圆形在 flex 布局中被压缩变形 */
+}
+
+/* 广告信息 */
+.ad-info {
+    flex-grow: 1; /* 占据所有剩余空间 */
+    color: white; /* 文本颜色 */
+}
+
+/* 确保广告信息里的 p 标签是左对齐的 */
+.ad-info p {
+    text-align: left;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+
+
+/* ======== 发布广告页新样式 ======== */
+
+/* 页面标题 */
+.page-title {
+    text-align: center;
+    color: #4A6AA0; /* 蓝色 */
+    margin-bottom: 30px;
+}
+
+/* 主表单容器 (Flex 布局实现两栏) */
+.publish-ad-form {
+    display: flex;
+    gap: 30px; /* 两栏之间的间距 */
+    width: 100%;
+    /* 在小屏幕上，允许两栏垂直堆叠 */
+    flex-wrap: wrap; 
+}
+
+/* ---- 左栏 (图片上传) ---- */
+.form-left {
+    flex: 1; /* 占据 1 份空间 */
+    min-width: 300px; /* 最小宽度 */
+}
+
+.file-upload-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 280px; /* 根据设计图调整高度 */
+    background-color: #888888; /* 灰色背景 */
+    border-radius: 20px; /* 圆角 */
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.file-upload-label:hover {
+    background-color: #777; /* 鼠标悬停时变暗 */
+}
+
+/* ---- 右栏 (表单字段) ---- */
+.form-right {
+    flex: 2; /* 占据 2 份空间 (比左栏更宽) */
+    display: flex;
+    flex-direction: column; /* 内部元素垂直堆叠 */
+    gap: 20px; /* 字段之间的垂直间距 */
+    min-width: 400px;
+}
+
+/* 用于并排输入的容器 */
+.input-group {
+    display: flex;
+    gap: 20px;
+}
+.input-group input {
+    width: 50%; /* 每个输入框占一半宽度 */
+}
+
+/* 右栏中所有输入框和下拉框的统一样式 */
+.form-right input[type="text"],
+.form-right input[type="date"],
+.form-right select {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px; /* 胶囊形状 */
+    background-color: #cacaca; /* 灰色背景 */
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box; /* 确保 padding 不会撑破宽度 */
+}
+
+/* 描述框 (多行文本) */
+.description-box {
+    padding: 20px 25px;
+    border: none;
+    border-radius: 20px; /* 圆角 */
+    background-color: #cacaca;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical; /* 只允许用户垂直调整大小 */
+    font-family: Arial, sans-serif; /* 继承字体 */
+}
+
+/* 输入框的提示文字样式 */
+.form-right input::placeholder,
+.description-box::placeholder {
+    color: #555;
+    font-weight: bold;
+}
+/* 下拉框的默认提示样式 */
+.form-right select option[disabled] {
+    color: #555;
+    font-weight: bold;
+}
+
+/* 提交按钮 */
+.submit-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: #888888; /* 灰色 */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    /* 关键：让按钮在右栏中靠右对齐 */
+    align-self: flex-end; 
+}
+.submit-btn:hover {
+    background-color: #666;
 }
