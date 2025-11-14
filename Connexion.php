@@ -1,25 +1,21 @@
 <?php
 session_start();                      
 require_once 'connexion.inc.php';    
-include 'head.php';
-include 'footer.php';
-
 if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
 
 $errors = []; 
 $email = '';
 $remember = false;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $posted_token = $_POST['csrf_token'] ?? '';
+    $posted_token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
     if (!hash_equals($_SESSION['csrf_token'], $posted_token)) {
         $errors[] = 'Requête invalide (CSRF).';
     } else {
-        $email = trim($_POST['email'] ?? '');
-        $password = $_POST['password'] ?? '';
+        $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
         $remember = isset($_POST['remember']) && $_POST['remember'] === '1';
         if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Veuillez saisir un email valide.';
@@ -85,21 +81,166 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } // end if no validation errors
     } // end CSRF ok
 } // end POST
-function e($s) { return htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8'); }
+function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" >
+    <link rel="stylesheet" href="css/style.css">
     <title>Connexion</title>
 </head>
 <body>
-    <section class="page-header bg-light py-4">
-        <div class="container text-center">
-            <h1 class="h3">Connexion</h1>
-        </div>
-    </section>
-<body>
-<html>
+    <?php include 'head.php'; ?>
+    <main>
+        <div class="content-wrapper" style="margin-top:200px; max-width:600px; margin:0 auto; padding:20px;">
+            <h2 class="section-title" style="
+                text-align:center; 
+                margin-top:200px;">
+                Connectez-vous à votre compte
+            </h2>
+            <?php if (!empty($errors)): ?>
+                <div style="
+                    background:#ffdddd; 
+                    padding:12px; 
+                    border-radius:12px; 
+                    margin-bottom:25px; 
+                    text-align:left;">
+                    <?php foreach ($errors as $error): ?>
+                        <p><?php echo htmlspecialchars($error); ?></p>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <form method="POST" style="display:flex; flex-direction:column; gap:20px">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+
+                <!-- Email Field -->
+                <div style="
+                    display:flex; 
+                    align-items:center; 
+                    gap:10px; 
+                    margin-bottom:20px;">
+                <div style="background:#6C87C4; 
+                    color:white;
+                    padding:12px 20px;
+                    border-radius:25px; 
+                    font-weight:bold;">
+                        Adresse Email
+                </div>
+
+                <input 
+                    type="text" 
+                    name="email" 
+                    value="<?php echo htmlspecialchars($email); ?>" 
+                    placeholder="Entrez votre email" 
+                    style="flex-grow:1; 
+                        padding:12px; 
+                        border:none; 
+                        border-radius:25px; 
+                        background:#E8EEF8;"
+                >
+                </div>
+
+                <!-- Password Field -->
+                <div style="
+                    display:flex;
+                     align-items:center; 
+                     gap:10px; 
+                     margin-bottom:20px;">
+                    <div style="
+                        background:#6C87C4; 
+                        color:white;
+                        padding:12px 20px; 
+                        border-radius:25px; 
+                        font-weight:bold;">
+                            Mot de passe
+                    </div>
+                    
+                    <div style="flex-grow:1; position:relative;">
+                        <input 
+                            type="password" 
+                            id="pwdField"
+                            name="password" 
+                            placeholder="Entrez votre mot de passe" 
+                            style="
+                                flex-grow:1; 
+                                padding:12px; 
+                                border:none; 
+                                border-radius:25px; 
+                                background:#E8EEF8;"
+                        >
+                        <button 
+                            type="button" 
+                            onclick="togglePwd()" 
+                                style="
+                                position:absolute; 
+                                right:-5px; 
+                                top:5px; 
+                                padding:5px 10px; 
+                                border:none; 
+                                border-radius:15px; 
+                                background:#6C87C4; 
+                                color:white;
+                                cursor:pointer;">
+                            Voir
+                        </button>
+                    </div>
+                </div>
+                <!-- Remember Me Checkbox -->
+                <div style="display:flex; align-items:center; margin-bottom:20px;">
+                    <input type="checkbox" name="remember" value="1" id="remember"
+                        style="width:18px; height:18px; margin-right:10px; cursor:pointer;">
+                    <label for="remember" style="cursor:pointer;">Se souvenir de moi</label>
+                </div>
+
+                <button type="submit" 
+                    style="
+                        width:70%; 
+                        margin:0 auto;
+                        padding:10px 0; 
+                        background:#3E61A8;
+                        color:white;
+                        border:none;
+                        border-radius:20px; 
+                        font-size:18px; 
+                        cursor:pointer;
+                        display:block;
+                    ">Connexion</button>
+            </form>
+            <div style="
+                width:100%; 
+                border-bottom:2px dashed black; 
+                margin:35px 0;
+            "></div>
+
+            <div style="display:flex; justify-content:space-between;">
+                <a href="inscription_1.php?role=client" 
+                    style="
+                        padding:10px 15px; 
+                        background:#3E61A8; 
+                        color:white; 
+                        text-decoration:none; 
+                        border-radius:25px;
+                    ">Créer un compte client</a>
+                <a href="inscription_1.php?role=demenageur" 
+                    style="
+                        padding:10px 15px; 
+                        background:#3E61A8; 
+                        color:white; 
+                        text-decoration:none; 
+                        border-radius:25px;
+                    ">Créer un compte déménageur</a>
+            </div>
+    </main>
+
+    <script>
+        function togglePwd() {
+            var f = document.getElementById('pwdField');
+            f.type = (f.type === 'password') ? 'text' : 'password';
+        }
+    </script>
+<?php include 'footer.php'; ?>
+</body>
+</html>
