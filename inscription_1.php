@@ -6,7 +6,7 @@ if (isset($_GET['role'])) {
 
 require_once 'connexion.inc.php';
 if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
 }
 $csrf_token = $_SESSION['csrf_token'];
 function e($s) {
@@ -77,8 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 <body>
     <?php include 'head.php'; ?>
     <main>
-        <div class="content-wrapper" style="
-            
+        <div class="content-wrapper" style="            
             max-width:600px; 
             margin:0 auto; 
             padding:20px;
@@ -109,44 +108,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 >
 
                 <!-- Email Field -->
-                <div style="
-                    display:flex; 
-                    align-items:center; 
-                    gap:10px; 
-                    margin-bottom:20px;
-                ">
-                <div style="background:#6C87C4; 
-                    color:white;
-                    padding:12px 20px;
-                    border-radius:25px; 
-                    font-weight:bold;">
-                        Adresse Email
-                </div>
-                <input 
-                    type="text" 
-                    name="email" 
-                    value="<?php echo htmlspecialchars($email); ?>" 
-                    placeholder="Entrez votre email" 
-                    style="flex-grow:1; 
-                        padding:12px; 
-                        border:none; 
-                        border-radius:25px; 
-                        background:#E8EEF8;"
-                >
+                <div class="form-row">
+                    <div class="form-label">Adresse Email</div>
+                    <input 
+                        type="text" 
+                        name="email" 
+                        value="<?php echo htmlspecialchars($email); ?>" 
+                        placeholder="Entrez votre email" 
+                        class="input-field"
+                    >
                 </div>
 
                 <!-- Password Field -->
-                <div style="
-                    display:flex;
-                     align-items:center; 
-                     gap:10px; 
-                     margin-bottom:20px;">
-                    <div style="
-                        background:#6C87C4; 
-                        color:white;
-                        padding:12px 20px; 
-                        border-radius:25px; 
-                        font-weight:bold;">
+                <div class="form-row">
+                    <div class="form-label">
                             Mot de passe
                     </div>
                     
@@ -156,43 +131,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                             id="pwdField"
                             name="password" 
                             placeholder="Entrez votre mot de passe" 
-                            style="
-                                flex-grow:1; 
-                                padding:12px; 
-                                border:none; 
-                                border-radius:25px; 
-                                background:#E8EEF8;"
+                            class="input-field"
                         >
                         <button 
                             type="button" 
-                            onclick="togglePwd()" 
-                                style="
-                                position:absolute; 
-                                right:-5px; 
-                                top:5px; 
-                                padding:5px 10px; 
-                                border:none; 
-                                border-radius:15px; 
-                                background:#6C87C4; 
-                                color:white;
-                                cursor:pointer;">
+                            onclick="togglePwd('pwdField')" 
+                            class="btn-toggle-voir">
                             Voir
                         </button>
                     </div>
                 </div>
 
                 <!-- Confirm Password Field -->
-                <div style="
-                    display:flex; 
-                    align-items:center; 
-                    gap:10px; 
-                    margin-bottom:20px;
-                ">
-                    <div style="background:#6C87C4; 
-                        color:white;
-                        padding:12px 20px;
-                        border-radius:25px; 
-                        font-weight:bold;">
+                <div class="form-row">
+                    <div class="form-label">
                             Confirmer
                     </div>
                     <div style="flex-grow:1; position:relative;">
@@ -202,26 +154,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                             name="confirm" 
                             required 
                             placeholder="Confirmez votre mot de passe"
-                            style="
-                                flex-grow:1; 
-                                padding:12px; 
-                                border:none; 
-                                border-radius:25px;
-                                background:#E8EEF8;"
+                            class="input-field"
                         >
                         <button 
                             type="button" 
-                            onclick="togglePwd()" 
-                                style="
-                                position:absolute; 
-                                right:-5px; 
-                                top:5px; 
-                                padding:5px 10px; 
-                                border:none; 
-                                border-radius:15px; 
-                                background:#6C87C4; 
-                                color:white;
-                                cursor:pointer;">
+                            onclick="togglePwd('pwd2')" 
+                            class="btn-toggle-voir">
                             Voir
                         </button>
                     </div>
@@ -229,28 +167,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
                 <!-- Submit Button -->
                 <button type="submit"
-                    style="
-                        width:70%; 
-                        margin:0 auto;
-                        padding:10px 0; 
-                        background:#3E61A8; 
-                        color:white; 
-                        border:none; 
-                        border-radius:20px; 
-                        font-size:18px; 
-                        cursor:pointer; 
-                        display:block;
-                    ">
+                    class="btn-primary">
                     Continuer
                 </button>
             </form>
             <script >
-                function togglePwd() {
-                    const pwdField = document.getElementById('pwdField');
-                    if (pwdField.type === 'password') {
-                        pwdField.type = 'text';
+                function togglePwd(id) {
+                    const f = document.getElementById(id);
+                    if (f.type === 'password') {
+                        f.type = 'text';
                     } else {
-                        pwdField.type = 'password';
+                        f.type = 'password';
                     }
                 }
             </script>
