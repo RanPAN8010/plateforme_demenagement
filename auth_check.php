@@ -4,7 +4,7 @@
 session_start();
 // Vérifier si l'utilisateur est connecté
 if (empty($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: connexion.php');
     exit;
 }
 // Récupérer l'ID de l'utilisateur connecté

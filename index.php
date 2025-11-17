@@ -1,5 +1,36 @@
+<?php
+// 1. 连接数据库 (如果你的 index.php 还没包含 db.php)
+include_once 'db.php';
+
+// 2. 查询随机的 5 条广告 (热门推荐)
+// 使用 ORDER BY RAND() 实现随机
+$sql_hot = "
+    SELECT 
+        annonce.id_annonce,
+        annonce.titre,
+        annonce.description_rapide,
+        annonce.date_depart,
+        annonce.nombre_demenageur,
+        v_dep.nom_ville AS ville_depart,
+        v_arr.nom_ville AS ville_arrivee,
+        img.chemin_image
+    FROM 
+        annonce
+    JOIN adresse AS adr_dep ON annonce.id_adresse_depart = adr_dep.id_adresse
+    JOIN ville AS v_dep ON adr_dep.id_ville = v_dep.id_ville
+    JOIN adresse AS adr_arr ON annonce.id_adresse_arrive = adr_arr.id_adresse
+    JOIN ville AS v_arr ON adr_arr.id_ville = v_arr.id_ville
+    LEFT JOIN image_annonce AS img ON annonce.id_annonce = img.id_annonce
+    GROUP BY annonce.id_annonce
+    ORDER BY RAND() 
+    LIMIT 5
+";
+
+$stmt_hot = $pdo->query($sql_hot);
+$hot_annonces = $stmt_hot->fetchAll();
+?>
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>搬家平台 - 首页</title>
@@ -16,7 +47,7 @@
 
         <section class="hero-section">
             <div class="slogan-container">
-                <h2>Slogan (标语)</h2>
+                <h2>HomeGo — On s’aide, on déménage, on avance.</h2>
             </div>
         </section>
 
@@ -95,25 +126,55 @@
             </div>
         </section>
         
-        <section class="ads-carousel-section">
-            <h2 class="section-title">热门广告</h2>
-
-            <div class="carousel-container">
+<section class="ads-carousel-section">
+            <h2 class="section-title">Annonces Populaires</h2> <div class="carousel-container">
                 <button class="arrow arrow-left dark-arrow">&lt;</button>
+                
                 <div class="carousel-track-container">
-                    <div class="carousel-track">
-                        <div class="ad-carousel-card">
-                            <div class="ad-card-image"><span>图片</span></div>
-                            <div class="ad-card-info">
-                                <h4>标题</h4>
-                                <p>需要的搬家工人数: 3</p>
-                                <p>出发/到达城市: 巴黎 -> 里昂</p>
-                                <p>出发日期: 2025-12-01</p>
-                                <p>描述: 只有几行描述...</p>
-                            </div>
-                        </div>
-                        </div>
-                </div>
+                <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none; display: flex;">
+                    
+                    <?php if (count($hot_annonces) > 0): ?>
+                        <?php foreach ($hot_annonces as $ad): ?>
+                            <li class="ad-item" style="flex-shrink: 0; width: 100%; box-sizing: border-box; margin: 0;">
+                                
+                                <div class="ad-image-container">
+                                    <?php if (!empty($ad['chemin_image'])): ?>
+                                        <img src="<?php echo htmlspecialchars($ad['chemin_image']); ?>" class="ad-main-img" alt="Image">
+                                    <?php else: ?>
+                                        <div class="ad-main-img-placeholder">Image</div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="ad-core-info">
+                                    <a href="ad-detail.php?id=<?php echo $ad['id_annonce']; ?>" style="text-decoration:none;">
+                                        <h3 class="ad-title"><?php echo htmlspecialchars($ad['titre']); ?></h3>
+                                    </a>
+                                    
+                                    <div class="ad-capsules">
+                                        <span class="capsule"><?php echo htmlspecialchars($ad['ville_depart']); ?></span>
+                                        <span class="capsule"><?php echo htmlspecialchars($ad['ville_arrivee']); ?></span>
+                                        <span class="capsule"><?php echo htmlspecialchars($ad['date_depart']); ?></span>
+                                        <span class="capsule"><?php echo htmlspecialchars($ad['nombre_demenageur']); ?> pers.</span>
+                                    </div>
+                                </div>
+
+                                <div class="ad-divider"></div>
+
+                                <div class="ad-description-box">
+                                    <p class="description-text">
+                                        <?php echo htmlspecialchars($ad['description_rapide']); ?>
+                                    </p>
+                                </div>
+
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li style="width: 100%; text-align: center; padding: 20px;">Aucune annonce populaire.</li>
+                    <?php endif; ?>
+
+                </ul>
+            </div>
+                
                 <button class="arrow arrow-right dark-arrow">&gt;</button>
             </div>
         </section>
