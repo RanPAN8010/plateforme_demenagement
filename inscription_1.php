@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_GET['role'])) {
-    $_SESSION['inscription_role'] = $_GET['role']; // 保存用户类型
+    $_SESSION['inscription_role'] = $_GET['role']; 
 }
 
 require_once 'connexion.inc.php';
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         }
         if (empty($errors)) {
             try {
-                $stmt = $pdo->prepare('SELECT id_utlisateur FROM utilisateur WHERE email = ?');
+                $stmt = $pdo->prepare('SELECT id_utilisateur FROM utilisateur WHERE email = ?');
                 $stmt->execute([$email]);
                 $existing = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($existing) {

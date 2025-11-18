@@ -7,6 +7,6 @@ session_unset();
 session_destroy();
 
 // 2. 退出后跳回广告列表页
-header("Location: ads-list.php");
+header("Location:  Connexion.php");
 exit();
 ?>
