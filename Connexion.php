@@ -43,17 +43,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             session_regenerate_id(true);
                             $_SESSION['user_id'] = $user['id_utilisateur'];
                             $_SESSION['user_email'] = $email;
-                            $stmtAdmin = $pdo->prepare('SELECT id_admin FROM admin WHERE id_utilisateur = ?');
+                            $stmtAdmin = $pdo->prepare('SELECT id_admin FROM admin WHERE id_admin = ?');
                             $stmtAdmin->execute([$user['id_utilisateur']]);
                             if ($stmtAdmin->fetch()) {
                                 $_SESSION['user_role'] = 'admin';
                             } else {
-                                $stmtDem = $pdo->prepare('SELECT id_demenageur FROM demenageur WHERE id_utilisateur = ?');
+                                $stmtDem = $pdo->prepare('SELECT id_demenageur FROM demenageur WHERE id_demenageur = ?');
                                 $stmtDem->execute([$user['id_utilisateur']]);
                                 if ($stmtDem->fetch()) {
                                     $_SESSION['user_role'] = 'demenageur';
                                 } else {
-                                    $stmtCli = $pdo->prepare('SELECT id_client FROM client WHERE id_utilisateur = ?');
+                                    $stmtCli = $pdo->prepare('SELECT id_client FROM client WHERE id_client = ?');
                                     $stmtCli->execute([$user['id_utilisateur']]);
                                     if ($stmtCli->fetch()) {
                                         $_SESSION['user_role'] = 'client';
