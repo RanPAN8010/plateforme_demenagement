@@ -4,7 +4,7 @@
 require_once 'auth_check.php'; 
 
 // 2. 连接数据库
-include 'db.php';
+include 'connexion.inc.php';
 
 // 3. 获取广告 ID
 if (!isset($_GET['id']) || empty($_GET['id'])) {

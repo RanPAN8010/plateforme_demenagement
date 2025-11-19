@@ -1,7 +1,7 @@
 <?php
 // get_cities.php
 header('Content-Type: application/json');
-include 'db.php';
+include 'connexion.inc.php';
 
 try {
     // 查询所有城市，按名字排序

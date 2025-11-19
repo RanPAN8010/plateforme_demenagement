@@ -1,6 +1,6 @@
 <?php
 // 1. 连接数据库
-include 'db.php';
+include 'connexion.inc.php';
 
 // 检查是否是 POST 请求
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

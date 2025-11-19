@@ -24,7 +24,7 @@
 
 <?php
 // 1. 引入数据库连接文件
-include 'db.php'; 
+include 'connexion.inc.php'; 
 
 // 2. 编写 SQL 查询语句
 // 这个查询稍微有点长，因为它需要把 annonce 表和 ville(城市)、image(图片) 表连起来

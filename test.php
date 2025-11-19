@@ -1,4 +1,3 @@
 <?php
-require_once("connexion.inc.php");
-echo "Connexion réussie à la base de données.";
-?>
+$hash = "从数据库复制出来的那串";
+var_dump(password_verify("Test1234", $hash));

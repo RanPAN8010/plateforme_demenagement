@@ -2,20 +2,21 @@
 session_start();
 /*
 si client
-*/
+
 if (isset($_GET['debug']) && $_GET['debug'] == 1) {
     $_SESSION['user_id'] = 16;
     $CURRENT_USER_ID = 16;
 }
-
+*/
 
 /*
 si demenageur
+*/
 if (isset($_GET['debug']) && $_GET['debug'] == 1) {
     $_SESSION['user_id'] = 17;
     $CURRENT_USER_ID = 17;
 }
-*/
+
 
 require_once 'auth_check.php';     
 require_once 'connexion.inc.php'; 
@@ -246,23 +247,29 @@ if ($userRole === 'client') {
 if($userRole ==='demenageur'){
     try{
         $sql = "
-        SELECT 
-            p.id_annonce,
-            p.prix_propose,
-            p.date_proposition,
-            p.message,
-            p.statut,
-            a.titre,
-            v.nom_ville AS ville_depart,
-            a.date_depart,
-            img.chemin_image AS img,
-        FROM proposition p
-        JOIN annonce a ON a.id_annonce = p.id_annonce
-        LEFT JOIN adresse adr ON adr.id_adresse = a.id_adresse_depart
-        LEFT JOIN image_annonce img ON img.id_annonce = a.id_annonce
-        WHERE p.id_demenageur = ?
-        ORDER BY p.date_proposition DESC
+            SELECT 
+                p.id_annonce,
+                p.prix_propose,
+                p.date_proposition,
+                p.message,
+                p.statut,
+                a.titre,
+                a.nombre_demenageur,
+                vdep.nom_ville AS ville_depart,
+                varr.nom_ville AS ville_arrive,
+                a.date_depart,
+                img.chemin_image AS img
+            FROM proposition p
+            JOIN annonce a ON a.id_annonce = p.id_annonce
+            LEFT JOIN adresse adr_dep ON adr_dep.id_adresse = a.id_adresse_depart
+            LEFT JOIN ville vdep ON vdep.id_ville = adr_dep.id_ville
+            LEFT JOIN adresse adr_arr ON adr_arr.id_adresse = a.id_adresse_arrive
+            LEFT JOIN ville varr ON varr.id_ville = adr_arr.id_ville
+            LEFT JOIN image_annonce img ON img.id_annonce = a.id_annonce
+            WHERE p.id_demenageur = ?
+            ORDER BY p.date_proposition DESC
         ";
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$CURRENT_USER_ID]);
         $propositions = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -337,6 +344,7 @@ try {
     <meta name="viewport">
     <title>Tableau de bord</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
     <?php include 'head.php'; ?>
@@ -621,13 +629,20 @@ try {
                                 </div>
                             </div>
                             <div class="prop-side">
-                                <div class="prop-price">
-                                    prix propose :
-                                    <strong><?php echo number_format($p['prix_propose'], 2); ?> €</strong>
+                                <div class="prop-top">
+                                    <div class="prop-price">
+                                        prix propose :
+                                        <strong><?php echo number_format($p['prix_propose'], 2); ?> €</strong>
+                                    </div>
+                                    <button class="prop-modifier"
+                                            onclick="openModal(
+                                                <?= $p['id_annonce'] ?>,
+                                                <?= $p['prix_propose'] ?>,
+                                                `<?= htmlspecialchars($p['message']) ?>`
+                                            )">
+                                        modifier
+                                    </button>
                                 </div>
-                                <button class="prop-modifier">
-                                    modifier
-                                </button>
                                 <div class="prop-message">
                                     <?php echo nl2br(htmlspecialchars($p['message'])); ?>
                                 </div>
@@ -664,9 +679,33 @@ try {
                 <?php endif; ?>
             <?php endif; ?>
         </div>
+        <!-- Modal background -->
+        <div id="editModal" class="modal-overlay">
+            <div class="modal-box">
+
+                <h2 class="modal-title">Modifier votre proposition</h2>
+
+                <form id="editForm">
+
+                    <input type="hidden" name="id_annonce" id="modal_id_annonce">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+                    <label>Prix proposé (€) :</label>
+                    <input type="number" step="0.01" id="modal_prix" name="prix_propose" required>
+
+                    <label>Message :</label>
+                    <textarea id="modal_message" name="message" rows="5" required></textarea>
+
+                    <div class="modal-buttons">
+                        <button type="submit" class="btn-submit">Enregistrer</button>
+                        <button type="button" class="btn-cancel" onclick="closeModal()">Annuler</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </main>
     <?php include 'footer.php'; ?>
-</body>
 <script>
 function toggleAnnonceAccordion(id) {
     const body = document.getElementById("annonce-body-" + id);
@@ -680,6 +719,35 @@ function toggleAnnonceAccordion(id) {
         arrow.textContent = "▲";
     }
 }
-</script>
+function openModal(id_annonce, prix, message) {
+    document.getElementById("modal_id_annonce").value = id_annonce;
+    document.getElementById("modal_prix").value = prix;
+    document.getElementById("modal_message").value = message;
 
+    document.getElementById("editModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("editModal").style.display = "none";
+}
+
+// AJAX submit
+document.getElementById("editForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("demenageur_action/proposition_update.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        closeModal();
+        location.reload(); // 刷新卡片
+    })
+    .catch(err => alert("Erreur AJAX"));
+});
+</script>    
+</body>
 </html>
