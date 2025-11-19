@@ -305,9 +305,6 @@ $villes = $pdo->query("SELECT id_ville, nom_ville, code_postal FROM ville ORDER 
         }
     });
 </script>
-
-
-<?php include 'footer.php';?>
 </body>
 </html>
     

@@ -176,6 +176,5 @@ function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
             f.type = (f.type === 'password') ? 'text' : 'password';
         }
     </script>
-<?php include 'footer.php'; ?>
 </body>
 </html>

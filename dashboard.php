@@ -705,7 +705,6 @@ try {
             </div>
         </div>
     </main>
-    <?php include 'footer.php'; ?>
 <script>
 function toggleAnnonceAccordion(id) {
     const body = document.getElementById("annonce-body-" + id);
