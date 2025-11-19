@@ -8,7 +8,7 @@
 <body>
 
     <?php
-        // 引入导航栏
+
         include 'head.php'; 
     ?>
 
@@ -47,29 +47,27 @@
                             .then(response => response.json())
                             .then(cities => {
                                 cities.forEach(city => {
-                                    // 创建选项: <option value="Paris (75000)">
+
                                     const option = document.createElement('option');
-                                    // 显示格式: 城市名 (邮编)
+
                                     option.value = `${city.nom_ville} (${city.code_postal})`; 
                                     dataList.appendChild(option);
                                 });
                             });
 
-                        // 2. 处理输入逻辑 (确保提交的是干净的城市名)
                         const setupInput = (inputId, hiddenId) => {
                             const input = document.getElementById(inputId);
                             const hidden = document.getElementById(hiddenId);
 
                             input.addEventListener('input', function() {
-                                // 如果用户选了 "Paris (75000)", 我们只取 "Paris" 发送给后端
-                                // 或者用户手打 "Bordeaux", 我们就发 "Bordeaux"
+
                                 let val = this.value;
-                                // 简单的正则：如果包含括号，去掉括号及里面的内容
+
                                 let cleanName = val.split('(')[0].trim();
                                 hidden.value = cleanName;
                             });
                             
-                            // 初始化
+
                             input.addEventListener('change', function() {
                                 let val = this.value;
                                 let cleanName = val.split('(')[0].trim();

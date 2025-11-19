@@ -121,6 +121,7 @@ try {
                         </tr>
                     </thead>
                     <tbody>
+                        // ... 循环开始 ...
                         <?php foreach ($data as $row): ?>
                             <tr>
                                 <?php foreach ($row as $key => $value): ?>
@@ -128,11 +129,21 @@ try {
                                         <?php echo htmlspecialchars($value); ?>
                                     </td>
                                 <?php endforeach; ?>
+                                
                                 <td>
-                                    <a href="#">Éditer</a> | <a href="#">Supprimer</a>
+                                    <?php
+                                        // 确定要删除的 ID 和键名 (id_annonce, id_utilisateur, ou id_case)
+                                        $delete_id = $row['id_annonce'] ?? $row['id_utilisateur'] ?? $row['id_case'] ?? 0;
+                                    ?>
+                                    <a href="delete_action.php?module=<?php echo htmlspecialchars($module); ?>&id=<?php echo htmlspecialchars($delete_id); ?>"
+                                    style="color:red; text-decoration:none;"
+                                    onclick="return confirm('ATTENTION : Êtes-vous sûr de vouloir supprimer cet élément ID: <?php echo htmlspecialchars($delete_id); ?> ? Cette action est irréversible.');">
+                                        Supprimer
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                        // ... 循环结束 ...
                     </tbody>
                 </table>
             <?php endif; ?>

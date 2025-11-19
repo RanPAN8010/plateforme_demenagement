@@ -1,18 +1,14 @@
 <?php
-// 1. 【关键步骤】权限检查
-// 如果用户未登录，这行代码会自动跳转到 login.php，下面的代码都不会执行
+
 require_once 'auth_check.php'; 
 
-// 2. 连接数据库
 include 'connexion.inc.php';
 
-// 3. 获取广告 ID
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("Erreur : Aucun identifiant d'annonce spécifié. <a href='ads-list.php'>Retour</a>");
 }
 $id_annonce = intval($_GET['id']);
 
-// 4. 查询广告详情 (关联查询城市和图片)
 $sql = "
     SELECT 
         annonce.*, 

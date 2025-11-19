@@ -8,7 +8,7 @@ if (empty($_SESSION['user_id'])) {
 }
 
 // Connexion BDD
-include 'db.php'; 
+include 'connexion.inc.php'; 
 
 // 2. 验证输入
 $module = $_GET['module'] ?? null;
