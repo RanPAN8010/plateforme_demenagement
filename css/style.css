@@ -298,22 +298,12 @@ p {
 /* ======== 广告列表页 ======== */
 
 
-/* 页面主要内容的居中容器 */
 .content-wrapper {
-    width: 90%; 
-    max-width: 1200px; 
-    
-    /* 顶部和底部保持 30px 的间距 */
-    margin-top: 30px;
-    margin-bottom: 30px;
-
-    /* ▼▼▼ 关键修改：取消居中，强制靠左 ▼▼▼ */
-    margin-left: 20px;  /* 强制左侧留 20px 的间距 (避免贴边) */
-    margin-right: auto; /* 让所有剩余空间都堆积在右侧，将区块推到左边 */
-    /* ▲▲▲ 关键修改结束 ▲▲▲ */
-    
-    padding-top: 140px; 
-    /* ... 其它样式保持不变 ... */
+  width: 90%; 
+  max-width: 1200px; 
+  margin: 30px auto; 
+  background: transparent;
+  padding-top: 140px; 
 }
 
 /* ---- 筛选栏 ---- */
@@ -700,6 +690,17 @@ p {
     align-items: flex-start; 
     gap: 30px; 
 }
+.content-wrapper.admin-container {
+    
+    
+    margin-left: 100px; 
+    margin-right: auto; /
+    
+    
+    margin-top: 30px; 
+    margin-bottom: 30px; 
+}
+
 
 /* 侧边栏样式 */
 .admin-sidebar {
