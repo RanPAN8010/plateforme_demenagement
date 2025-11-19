@@ -52,75 +52,101 @@ $hot_annonces = $stmt_hot->fetchAll();
         </section>
 
         <section class="testimonials-section">
-            <h2 class="section-title">用户口碑</h2>
+            <h2 class="section-title">Avis des utilisateurs</h2>
             
             <div class="carousel-container">
                 <button class="arrow arrow-left">&lt;</button>
-                <div class="carousel-track-container">
-                    <div class="carousel-track">
-                        <div class="testimonial-card">
-                            <div class="avatar-placeholder user-avatar"></div>
-                            <h3>用户姓名</h3>
-                            <div class="review-box"><p>用户评价</p></div>
-                        </div>
-                        <div class="testimonial-card faded">
-                            <div class="avatar-placeholder user-avatar"></div>
-                            <h3>用户姓名</h3>
-                            <div class="review-box"><p>用户评价</p></div>
-                        </div>
-                        <div class="testimonial-card faded">
-                            <div class="avatar-placeholder user-avatar"></div>
-                            <h3>用户姓名</h3>
-                            <div class="review-box"><p>用户评价</p></div>
-                        </div>
-                    </div>
+<div class="carousel-track-container">
+                    <ul class="carousel-track" style="padding: 0; margin: 0; list-style: none; display: flex;">
+                        
+                        <li class="testimonial-card">
+                            <img src="https://i.pravatar.cc/150?img=5" alt="Sophie Martin" class="testimonial-avatar">
+                            <h3>Sophie Martin</h3>
+                            <div class="review-box">
+                                <p>Service ultra rapide ! J'ai trouvé des déménageurs qualifiés en moins d'une heure. Je recommande.</p>
+                            </div>
+                        </li>
+
+                        <li class="testimonial-card">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Thomas Dubois" class="testimonial-avatar">
+                            <h3>Thomas Dubois</h3>
+                            <div class="review-box">
+                                <p>L'interface est très intuitive. J'ai pu comparer les prix et économiser 200€ sur mon déménagement.</p>
+                            </div>
+                        </li>
+
+                        <li class="testimonial-card">
+                            <img src="https://i.pravatar.cc/150?img=9" alt="Camille Laurent" class="testimonial-avatar">
+                            <h3>Camille Laurent</h3>
+                            <div class="review-box">
+                                <p>Les déménageurs étaient ponctuels et très soigneux avec mes meubles fragiles. Merci HomeGo !</p>
+                            </div>
+                        </li>
+
+                        <li class="testimonial-card">
+                            <img src="https://i.pravatar.cc/150?img=33" alt="Lucas Bernard" class="testimonial-avatar">
+                            <h3>Lucas Bernard</h3>
+                            <div class="review-box">
+                                <p>Une excellente expérience. Le support client a répondu à toutes mes questions très rapidement.</p>
+                            </div>
+                        </li>
+
+                        <li class="testimonial-card">
+                            <img src="https://i.pravatar.cc/150?img=44" alt="Emma Petit" class="testimonial-avatar">
+                            <h3>Emma Petit</h3>
+                            <div class="review-box">
+                                <p>Simple, efficace et sécurisé. Tout s'est déroulé comme prévu du début à la fin.</p>
+                            </div>
+                        </li>
+
+                    </ul>
                 </div>
                 <button class="arrow arrow-right">&gt;</button>
             </div>
         </section>
         
         <section class="movers-section">
-            <h2 class="section-title">优秀搬家工</h2>
+            <h2 class="section-title">Excellent déménageur</h2>
             
             <div class="movers-grid">
                 <div class="mover-card">
                     <div class="avatar-placeholder mover-avatar"></div>
-                    <h3>搬家工名字</h3>
+                    <h3>Marc Chevalier</h3>
                     <div class="mover-info-box">
-                        <p>好评星数</p>
-                        <p>用户评价</p>
+                        <p>☆☆☆☆☆</p>
+                        <p>“Ponctualité exemplaire et grande force ! Il a su monter mon armoire sans problème au 4ème étage.”</p>
                     </div>
                 </div>
                 <div class="mover-card">
                     <div class="avatar-placeholder mover-avatar"></div>
-                    <h3>搬家工名字</h3>
+                    <h3>Éloïse Mercier</h3>
                     <div class="mover-info-box">
-                        <p>好评星数</p>
-                        <p>用户评价</p>
+                        <p>☆☆☆☆</p>
+                        <p>“Très professionnelle et organisée. Éloïse a géré l'emballage et le transport avec une grande efficacité.”</p>
                     </div>
                 </div>
                 <div class="mover-card">
                     <div class="avatar-placeholder mover-avatar"></div>
-                    <h3>搬家工名字</h3>
+                    <h3>Antoine Leroy</h3>
                     <div class="mover-info-box">
-                        <p>好评星数</p>
-                        <p>用户评价</p>
+                        <p>☆☆☆☆☆</p>
+                        <p>“Excellent ! Prix juste et service client très sympathique. Je le rappellerai pour mon prochain déménagement.”</p>
                     </div>
                 </div>
                 <div class="mover-card">
                     <div class="avatar-placeholder mover-avatar"></div>
-                    <h3>搬家工名字</h3>
+                    <h3>Léa Morel</h3>
                     <div class="mover-info-box">
-                        <p>好评星数</p>
-                        <p>用户评价</p>
+                        <p>☆☆☆☆☆</p>
+                        <p>“Léa était très rassurante et a pris grand soin de ma collection de disques fragiles. Je recommande pour les objets de valeur.”</p>
                     </div>
                 </div>
                 <div class="mover-card">
                     <div class="avatar-placeholder mover-avatar"></div>
-                    <h3>搬家工名字</h3>
+                    <h3>Yann Dubois</h3>
                     <div class="mover-info-box">
-                        <p>好评星数</p>
-                        <p>用户评价</p>
+                        <p>☆☆☆☆☆</p>
+                        <p>“Rapide et efficace. Le travail était terminé bien plus tôt que prévu. Un vrai pro !”</p>
                     </div>
                 </div>
             </div>

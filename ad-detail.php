@@ -43,6 +43,15 @@ $annonce = $stmt->fetch();
 if (!$annonce) {
     die("Erreur : Annonce introuvable. <a href='ads-list.php'>Retour</a>");
 }
+
+$is_mover = false;
+$stmt_role = $pdo->prepare("SELECT id_demenageur FROM demenageur WHERE id_demenageur = ? LIMIT 1");
+$stmt_role->execute([$CURRENT_USER_ID]); // $CURRENT_USER_ID vient de auth_check.php
+if ($stmt_role->fetch()) {
+    $is_mover = true; 
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -160,6 +169,22 @@ if (!$annonce) {
                 <?php echo nl2br(htmlspecialchars($annonce['description'])); ?>
             </div>
             
+            <br>
+            
+            <?php if ($is_mover): ?>
+                <h3 style="color:#e28c3f;">Soumettre une Proposition</h3>
+                <div class="quote-form-container">
+                    <form method="POST" action="submit_proposition.php">
+                        <input type="hidden" name="annonce_id" value="<?php echo htmlspecialchars($annonce['id_annonce']); ?>">
+                        
+                        <input type="number" name="prix_propose" placeholder="Entrez votre offre en €" required min="1" step="0.01" class="quote-input">
+                        <button type="submit" class="btn-quote">Confirmer l'offre</button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <p style="color:#888;">*Seuls les déménageurs peuvent soumettre une proposition.</p>
+            <?php endif; ?>
+
             <br>
             <a href="ads-list.php" style="color: #6c87c4; text-decoration: none; font-weight: bold;">&larr; Retour à la liste</a>
 

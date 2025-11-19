@@ -1,33 +1,10 @@
-<?php if (empty($_SESSION['user_id'])): ?>
-        
-        <a href="quick_login.php" style="
-            position: fixed; top: 150px; right: 20px; z-index: 9999; 
-            background-color: #e74c3c; color: white; padding: 15px 20px; 
-            border-radius: 10px; text-decoration: none; font-weight: bold; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-            🚀 一键登录
-        </a>
 
-    <?php else: ?>
-
-        <a href="logout.php" style="
-            position: fixed; top: 150px; right: 20px; z-index: 9999; 
-            background-color: #2c3e50; color: white; padding: 15px 20px; 
-            border-radius: 10px; text-decoration: none; font-weight: bold; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-            👋 退出登录 (ID: <?php echo $_SESSION['user_id']; ?>)
-        </a>
-
-    <?php endif; ?>
-    ```
 
 
 <?php
 // 1. 引入数据库连接文件
 include 'connexion.inc.php'; 
 
-// 2. 编写 SQL 查询语句
-// 这个查询稍微有点长，因为它需要把 annonce 表和 ville(城市)、image(图片) 表连起来
 $sql = "
     SELECT 
         annonce.id_annonce,
@@ -57,7 +34,7 @@ $sql = "
     ORDER BY annonce.date_depart DESC
 ";
 
-// 3. 执行查询
+
 $stmt = $pdo->query($sql);
 $annonces = $stmt->fetchAll();
 ?>
