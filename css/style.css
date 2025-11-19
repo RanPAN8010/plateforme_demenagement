@@ -37,7 +37,7 @@ p {
 .nav-center {
   flex: 1;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .nav-user {
@@ -54,14 +54,14 @@ p {
 }
 .navbar nav {
   flex-grow: 1;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 .logo-img {
   max-height: 100px; /* 你的大图片 */
   width: auto;
   display: block;
-  padding: 0; 
+  padding: 0;
   border-radius: 15px;
 }
 
@@ -72,7 +72,7 @@ p {
   margin: 0;
   padding: 0;
   justify-content: center;
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .nav-links a {
@@ -88,7 +88,6 @@ p {
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s ease;
-
 }
 /* 鼠标悬停效果 */
 .nav-links a:hover {
@@ -111,7 +110,7 @@ p {
 
 /* --- 背景图 --- */
 .hero-section {
-  height: 100vh; 
+  height: 100vh;
 
   background-image: url("../img/bj.png");
   background-size: cover; /* 覆盖整个区域 */
@@ -124,7 +123,7 @@ p {
 }
 
 .slogan-container {
-  background-color: #e28c3f; 
+  background-color: #e28c3f;
   padding: 20px 60px;
   border-radius: 40px; /* 圆角 */
   color: black;
@@ -134,7 +133,7 @@ p {
 
 /* --- 通用区块标题 --- */
 .section-title {
-  display: inline-block; 
+  display: inline-block;
   background-color: #e28c3f;
   color: black;
   padding: 10px 30px;
@@ -145,13 +144,13 @@ p {
 
 /* 用户口碑头像  */
 .testimonial-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%; /* 圆形 */
-    object-fit: cover;  
-    border: 3px solid #a4d47c; 
-    margin: 0 auto 15px auto; 
-    display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* 圆形 */
+  object-fit: cover;
+  border: 3px solid #a4d47c;
+  margin: 0 auto 15px auto;
+  display: block;
 }
 
 /* --- 通用轮播  布局 --- */
@@ -164,7 +163,6 @@ p {
   margin: 0 auto;
 }
 .carousel-track-container {
-
   width: 100%;
 }
 .carousel-track {
@@ -173,7 +171,7 @@ p {
   transition: transform 0.5s ease;
 }
 .arrow {
-  background-color: #6c87c4; 
+  background-color: #6c87c4;
   color: white;
   border: none;
   border-radius: 50%;
@@ -192,7 +190,7 @@ p {
 
 /* --- 区块 2: 用户口碑 --- */
 .testimonials-section {
-  text-align: center; 
+  text-align: center;
   padding-bottom: 40px;
   overflow: hidden;
 }
@@ -200,7 +198,7 @@ p {
   flex-basis: 300px;
   flex-shrink: 0;
 
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   border-radius: 20px;
   padding: 20px;
   text-align: center;
@@ -232,12 +230,12 @@ p {
 .movers-section {
   text-align: center;
   padding-bottom: 40px;
-  background-color: #f9f9f9; 
+  background-color: #f9f9f9;
 }
 .movers-grid {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 25px; /* 卡片间距 */
   width: 90%;
   margin: 0 auto;
@@ -264,17 +262,17 @@ p {
 }
 .ad-carousel-card {
   display: flex;
-  background-color: #6c87c4; 
+  background-color: #6c87c4;
   border-radius: 20px;
   padding: 25px;
-  width: 100%; 
-  box-sizing: border-box; 
+  width: 100%;
+  box-sizing: border-box;
   flex-shrink: 0;
 }
 .ad-card-image {
   flex-basis: 25%;
   min-height: 150px;
-  background-color: #a4d47c; 
+  background-color: #a4d47c;
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -297,37 +295,35 @@ p {
 
 /* ======== 广告列表页 ======== */
 
-
 .content-wrapper {
-  width: 90%; 
-  max-width: 1200px; 
-  margin: 30px auto; 
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
   background: transparent;
-  padding-top: 140px; 
+  padding-top: 140px;
 }
 
 /* ---- 筛选栏 ---- */
 .filter-section {
-  display: flex; 
-  justify-content: center; 
-  flex-wrap: wrap; 
-  gap: 20px; 
-  margin-bottom: 30px; 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .filter-input {
-  padding: 12px 25px; 
-  border: none; 
-  border-radius: 25px; 
-  background-color: #e28c3f; 
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background-color: #e28c3f;
   font-size: 14px;
   font-weight: bold;
   color: #333;
-  outline: none; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  min-width: 180px; 
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
 }
-
 
 .filter-input::placeholder {
   color: #ffffff;
@@ -335,9 +331,8 @@ p {
   font-weight: bold;
 }
 
-
 .filter-input[type="date"] {
-  color: #333; 
+  color: #333;
 }
 
 /* ---- 分隔线 ---- */
@@ -357,17 +352,15 @@ p {
   gap: 25px;
 }
 
-
 .ad-item-link {
   text-decoration: none;
   display: block;
 }
 
-
 .ad-item {
-  display: flex; 
-  align-items: stretch; 
-  background-color: #e8ecf4; 
+  display: flex;
+  align-items: stretch;
+  background-color: #e8ecf4;
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -383,14 +376,14 @@ p {
 
 /* --- 左侧图片 --- */
 .ad-image-container {
-  flex: 0 0 180px; 
+  flex: 0 0 180px;
   margin-right: 20px;
 }
 
 .ad-main-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   border-radius: 15px;
   display: block;
 }
@@ -400,7 +393,7 @@ p {
   width: 100%;
   height: 100%;
   min-height: 150px;
-  background-color: #6c87c4; 
+  background-color: #6c87c4;
   border-radius: 15px;
 }
 
@@ -415,12 +408,12 @@ p {
 
 /* 标题 (长胶囊背景) */
 .ad-title {
-  background-color: #6c87c4; 
+  background-color: #6c87c4;
   color: white;
   padding: 10px 20px;
   border-radius: 25px;
   text-align: center;
-  margin: 0 0 15px 0; 
+  margin: 0 0 15px 0;
   font-size: 1.2em;
   box-sizing: border-box;
 }
@@ -428,12 +421,12 @@ p {
 /* 信息胶囊网格 */
 .ad-capsules {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
 .capsule {
-  background-color: #6c87c4; 
+  background-color: #6c87c4;
   color: white;
   padding: 8px 10px;
   border-radius: 20px;
@@ -448,20 +441,20 @@ p {
 /* --- 分隔线 --- */
 .ad-divider {
   width: 3px;
-  background-color: #8faadc; 
+  background-color: #8faadc;
   border-radius: 2px;
   margin: 0 15px;
 }
 
 /* --- 右侧描述 --- */
 .ad-description-box {
-  flex: 1.2; 
-  background-color: #dbe2ef; 
+  flex: 1.2;
+  background-color: #dbe2ef;
   border-radius: 15px;
   padding: 20px;
   display: flex;
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
 }
 
 .description-text {
@@ -469,7 +462,7 @@ p {
   font-size: 1.1em;
   line-height: 1.4;
   margin: 0;
-  text-align: left; 
+  text-align: left;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -496,94 +489,89 @@ p {
   }
 }
 
-
 /* ======== 广告详情页报价表单 ======== */
 
 .quote-form-container {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 25px;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.05); 
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 25px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
 }
 
 .quote-form-container form {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
 .quote-input {
-    flex-grow: 1; 
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1.1em;
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1.1em;
 }
 
 .btn-quote {
-    background-color: #4CAF50; 
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    white-space: nowrap; 
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-quote:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
-
 
 /* ======== 广告条目链接 ======== */
 
 .ad-item-link {
-  text-decoration: none; 
-  color: inherit; 
-  display: block; 
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
-
 .ad-item-link:hover .ad-item {
-
-  background-color: #7a7a7a; 
-  transform: translateY(-3px); 
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+  background-color: #7a7a7a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* ======== 发布广告页新样式 ======== */
 
 .page-title {
   text-align: center;
-  color: white; 
+  color: white;
   margin-bottom: 30px;
 
-  background-color: #e28c3f; 
-  display: inline-block; 
-  padding: 15px 40px; 
-  border-radius: 50px; 
+  background-color: #e28c3f;
+  display: inline-block;
+  padding: 15px 40px;
+  border-radius: 50px;
 
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-
 }
 
 /* 主表单容器  */
 .publish-ad-form {
   display: flex;
-  gap: 30px; 
+  gap: 30px;
   width: 100%;
   flex-wrap: wrap;
 }
 
 /* ---- 左栏 (图片上传) ---- */
 .form-left {
-  flex: 1; 
-  min-width: 300px; 
+  flex: 1;
+  min-width: 300px;
 }
 
 .file-upload-label {
@@ -591,9 +579,9 @@ p {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 280px; 
-  background-color: #9f9f9f; 
-  border-radius: 20px; 
+  height: 280px;
+  background-color: #9f9f9f;
+  border-radius: 20px;
   color: white;
   font-size: 1.2em;
   font-weight: bold;
@@ -601,15 +589,15 @@ p {
   transition: background-color 0.3s ease;
 }
 .file-upload-label:hover {
-  background-color: #777; 
+  background-color: #777;
 }
 
 /* ---- 右栏 ---- */
 .form-right {
-  flex: 2; 
+  flex: 2;
   display: flex;
-  flex-direction: column; 
-  gap: 20px; 
+  flex-direction: column;
+  gap: 20px;
   min-width: 400px;
 }
 
@@ -619,30 +607,15 @@ p {
   gap: 20px;
 }
 .input-group input {
-  width: 50%; 
+  width: 50%;
 }
-
 
 .form-right input[type="text"],
 .form-right input[type="date"],
 .form-right select {
   padding: 15px 25px;
   border: none;
-  border-radius: 25px; 
-  background-color: #cacaca; 
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  outline: none;
-  width: 100%;
-  box-sizing: border-box; 
-}
-
-/* 描述框  */
-.description-box {
-  padding: 20px 25px;
-  border: none;
-  border-radius: 20px; 
+  border-radius: 25px;
   background-color: #cacaca;
   font-size: 14px;
   font-weight: bold;
@@ -650,8 +623,22 @@ p {
   outline: none;
   width: 100%;
   box-sizing: border-box;
-  resize: vertical; 
-  font-family: Arial, sans-serif; 
+}
+
+/* 描述框  */
+.description-box {
+  padding: 20px 25px;
+  border: none;
+  border-radius: 20px;
+  background-color: #cacaca;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  font-family: Arial, sans-serif;
 }
 
 /* 输入框的提示文字样式 */
@@ -667,138 +654,122 @@ p {
 }
 /* ======== 仅修改下拉列表展开后的选项颜色 ======== */
 
-
 .form-right select {
   background-color: #cacaca;
   color: #333;
 }
 
-
 .form-right select option {
-  background-color: #a0a0a0; 
-  color: white; 
-  padding: 10px; 
+  background-color: #a0a0a0;
+  color: white;
+  padding: 10px;
 }
-
 
 /* ================= 后台管理界面样式 ======================== */
 
-
 .admin-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; 
-    gap: 30px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
 }
 .content-wrapper.admin-container {
-    
-    
-    margin-left: 100px; 
-    margin-right: auto; /
-    
-    
-    margin-top: 30px; 
-    margin-bottom: 30px; 
+  margin-left: 100px;
+  margin-right: auto;
+  /margin-top: 30px;
+  margin-bottom: 30px;
 }
-
 
 /* 侧边栏样式 */
 .admin-sidebar {
-    flex: 0 0 200px; 
-    background-color: #f8f8f8; 
-    border-radius: 10px;
-    padding: 20px 0; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex: 0 0 200px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .admin-sidebar h3 {
-    color: var(--color-blue-title); 
-    margin-top: 0;
-    margin-left: 20px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    text-align: left; 
+  color: var(--color-blue-title);
+  margin-top: 0;
+  margin-left: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  text-align: left;
 }
 /* 侧边栏样式补充 */
 .admin-sidebar .sidebar-menu a.active {
-    background-color: var(--color-green-dark); 
-    color: black; 
-    font-weight: bold;
+  background-color: var(--color-green-dark);
+  color: black;
+  font-weight: bold;
 }
 .admin-sidebar .sidebar-menu a.active:hover {
-    background-color: #5875b3; 
+  background-color: #5875b3;
 }
-
 
 /* 菜单链接 */
 .sidebar-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar-menu a {
-    display: block;
-    padding: 12px 20px;
-    margin: 0;
-    text-decoration: none;
-    color: #333;
-    border-radius: 0;
-    transition: background-color 0.2s ease;
-    text-align: left; 
-    font-weight: bold;
+  display: block;
+  padding: 12px 20px;
+  margin: 0;
+  text-decoration: none;
+  color: #333;
+  border-radius: 0;
+  transition: background-color 0.2s ease;
+  text-align: left;
+  font-weight: bold;
 }
 
 .sidebar-menu a:hover {
-    background-color: #5875b3;
-    color: var(--color-green-dark); 
+  background-color: #5875b3;
+  color: var(--color-green-dark);
 }
 
 /* 主内容区 */
 .admin-main-content {
-    flex-grow: 1; 
-    background-color: white;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    min-height: 80vh; 
+  flex-grow: 1;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  min-height: 80vh;
 }
 
-
-.admin-table th:nth-child(2), 
-.admin-table td:nth-child(2) { 
-    width: 280px; 
-    white-space: nowrap; 
+.admin-table th:nth-child(2),
+.admin-table td:nth-child(2) {
+  width: 280px;
+  white-space: nowrap;
 }
 
 .admin-table th:last-child,
 .admin-table td:last-child {
-    width: 120px;
-    white-space: nowrap;
+  width: 120px;
+  white-space: nowrap;
 }
-
-
-
 
 /* 提交按钮 */
 .submit-btn {
   padding: 15px 30px;
   border: none;
   border-radius: 25px;
-  background-color: #3e61a8; 
+  background-color: #3e61a8;
   color: white;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
-
   align-self: flex-end;
 }
 .submit-btn:hover {
   background-color: #666;
 }
-
 
 .error-message-box {
   background: #ffdddd;
@@ -925,7 +896,7 @@ p {
 /* 外层卡片容器 */
 .historique-item {
   width: 100%;
-  background: #e8eef8; 
+  background: #e8eef8;
   padding: 25px 30px;
   border-radius: 12px;
   display: flex;
@@ -1125,7 +1096,7 @@ p {
 
 .prop-card-client {
   width: 100%;
-  background: ; /* 淡蓝背景 */
+  background: #e8eef8; /* 淡蓝背景 */
   padding: 25px;
   border-radius: 15px;
   display: flex;
