@@ -1,7 +1,7 @@
 <?php
 // admin_dashboard.php
 // Inclusion de la connexion BDD et protection d'accès
-include 'db.php'; 
+include 'connexion.inc.php'; 
 // (Optionnel) Ici, il faudrait inclure un fichier admin_auth_check.php pour sécuriser la page
 
 // Récupération du module (par défaut: gestion des annonces)
