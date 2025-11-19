@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         try {
 
-            $password_hash = password_hash($_SESSION['register_password'], PASSWORD_DEFAULT);
+            $password_hash = $_SESSION['register_password'];
             $pdo->beginTransaction();
             $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, telephone, sexe, id_ville, etat_compte)
                     VALUES (?, ?, ?, ?, ?, ?, ?, 1)";
