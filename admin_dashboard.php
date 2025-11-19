@@ -121,7 +121,7 @@ try {
                         </tr>
                     </thead>
                     <tbody>
-                        // ... 循环开始 ...
+                        
                         <?php foreach ($data as $row): ?>
                             <tr>
                                 <?php foreach ($row as $key => $value): ?>
@@ -132,7 +132,7 @@ try {
                                 
                                 <td>
                                     <?php
-                                        // 确定要删除的 ID 和键名 (id_annonce, id_utilisateur, ou id_case)
+                                        // 确定要删除的 ID 和键名 
                                         $delete_id = $row['id_annonce'] ?? $row['id_utilisateur'] ?? $row['id_case'] ?? 0;
                                     ?>
                                     <a href="delete_action.php?module=<?php echo htmlspecialchars($module); ?>&id=<?php echo htmlspecialchars($delete_id); ?>"
@@ -143,7 +143,7 @@ try {
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                        // ... 循环结束 ...
+                        
                     </tbody>
                 </table>
             <?php endif; ?>
