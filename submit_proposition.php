@@ -35,7 +35,7 @@ try {
 
     $stmt = $pdo->prepare($sql);
     $statut = 'en_attente'; 
-    $message = "Offre soumise automatiquement."; /
+    $message = "Offre soumise automatiquement."; 
 
     $stmt->execute([
         $annonce_id,
