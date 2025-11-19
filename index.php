@@ -1,9 +1,8 @@
 <?php
-// 1. 连接数据库 (如果你的 index.php 还没包含 db.php)
+
 include_once 'connexion.inc.php';
 
-// 2. 查询随机的 5 条广告 (热门推荐)
-// 使用 ORDER BY RAND() 实现随机
+
 $sql_hot = "
     SELECT 
         annonce.id_annonce,
@@ -39,7 +38,7 @@ $hot_annonces = $stmt_hot->fetchAll();
 <body>
 
     <?php
-        // 1. 包含你的头部文件 (head.php)
+
         include 'head.php'; 
     ?>
 
@@ -208,12 +207,11 @@ $hot_annonces = $stmt_hot->fetchAll();
     </main>
 
     <?php
-        // 建议你创建一个 footer.php 来封装页脚
-        // include 'footer.php'; 
+
     ?>
     
     <?php
-        // include 'footer.php'; 
+
     ?>
 
     

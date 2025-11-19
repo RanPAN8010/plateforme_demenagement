@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $logged_in = isset($_SESSION['user_id']);
 
 // 获取头像路径
-$avatar = 'img/avatar/default_avatar.png';  // 默认头像
+$avatar = 'img/avatar/default_avatar.png';  
 
 if ($logged_in) {
     require_once 'connexion.inc.php';
@@ -15,7 +15,7 @@ if ($logged_in) {
     $stmt->execute([$_SESSION['user_id']]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($row && !empty($row['photo_profil'])) {
-        $avatar = $row['photo_profil'];  // 例如 img/avatar/xxx.png
+        $avatar = $row['photo_profil']; 
     }
 }
 ?>

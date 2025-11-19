@@ -3,7 +3,7 @@
 
 
 require_once 'auth_check.php'; 
-include 'db.php';              
+include 'connexion.inc.php';              
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: ads-list.php");
